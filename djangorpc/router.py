@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 import json
 from inspect import getargspec
@@ -17,7 +17,7 @@ class RpcRouter(object):
     """
     Router class for RPC.
     """
-    print 'rpc'
+    print('rpc')
 
     def __init__(self, actions={}, url_namespace=None, enable_buffer=True):
         """
@@ -77,7 +77,7 @@ class RpcRouter(object):
 
             # FIXME: This looks like a little ugly
             if 'result' in mr and isinstance(mr['result'], RpcHttpResponse):
-                for key, val in mr['result'].cookies.items():
+                for key, val in list(mr['result'].cookies.items()):
                     response.set_cookie(
                         key,
                         val.value,
@@ -184,7 +184,7 @@ class RpcRouter(object):
 
         func_args, varargs, varkw, func_defaults = getargspec(func)
         func_args.remove('self')  # TODO: or cls for classmethod
-        for name in extra_kwargs.keys():
+        for name in list(extra_kwargs.keys()):
             if name in func_args:
                 func_args.remove(name)
 
@@ -206,13 +206,13 @@ class RpcRouter(object):
                 'method': method,
                 'result': self.execute_func(func, *args, **extra_kwargs)
             }
-        except RpcExceptionEvent, e:
+        except RpcExceptionEvent as e:
             return {
                 'tid': rd['tid'],
                 'type': 'exception',
                 'action': rd['action'],
                 'method': method,
-                'message': unicode(e)
+                'message': str(e)
             }
 
 
@@ -250,7 +250,7 @@ class RpcRouterJSONEncoder(json.JSONEncoder):
                 'enableBuffer': obj.enable_buffer,
                 'actions': {}
             }
-            for name, action in obj.actions.items():
+            for name, action in list(obj.actions.items()):
                 output['actions'][name] = self._encode_action(action)
             return output
         else:

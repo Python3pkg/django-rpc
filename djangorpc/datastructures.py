@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from django.utils.datastructures import MultiValueDict
 
@@ -9,7 +9,7 @@ class RpcMultiValueDict(MultiValueDict):
     """
 
     def __init__(self, key_to_list_mapping={}):
-        for key, value in key_to_list_mapping.items():
+        for key, value in list(key_to_list_mapping.items()):
             if not isinstance(value, (list, tuple)):
                 key_to_list_mapping[key] = [value]
 

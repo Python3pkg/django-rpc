@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -46,7 +46,7 @@ def login_required(method):
         user = kwargs.get('user')
 
         if not user or not user.is_authenticated():
-            raise RpcExceptionEvent(_(u'Login required'))
+            raise RpcExceptionEvent(_('Login required'))
 
     method._pre_execute = check_login
     return method

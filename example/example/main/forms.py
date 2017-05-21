@@ -12,7 +12,7 @@ class FeedbackForm(forms.Form, AjaxForm):
     message = forms.CharField(widget=forms.Textarea())
 
     def send(self):
-        print 'Send!'
+        print('Send!')
 
 
 class FileForm(forms.Form, AjaxForm):
@@ -21,4 +21,4 @@ class FileForm(forms.Form, AjaxForm):
 
     def send(self):
         file = self.cleaned_data['file']
-        print 'Send: %s, size: %s' % (file, file.size)
+        print('Send: %s, size: %s' % (file, file.size))

@@ -5,7 +5,7 @@ from djangorpc.exceptions import RpcExceptionEvent
 class GameApiClass(object):
 
     def move(self, x, y, battle_id, user):
-        print 'Move in battle #%s' % battle_id
+        print('Move in battle #%s' % battle_id)
         return {}
 
     def _extra_kwargs(self, request, *args, **kwargs):

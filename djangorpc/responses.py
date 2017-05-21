@@ -1,6 +1,6 @@
-from __future__ import unicode_literals
 
-from Cookie import SimpleCookie
+
+from http.cookies import SimpleCookie
 
 
 class RpcResponse(dict):

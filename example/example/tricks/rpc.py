@@ -6,19 +6,19 @@ from djangorpc.exceptions import RpcExceptionEvent
 class TricksApiClass(object):
 
     def func1(self, user, request):
-        return Msg(u'func1')
+        return Msg('func1')
 
 
 class TricksOneApiClass(object):
 
     def func2(self, val, **kwargs):
-        return Msg(u'func2')
+        return Msg('func2')
 
 
 class TricksTwoApiClass(object):
 
     def func3(self, user, request):
-        return Msg(u'func3')
+        return Msg('func3')
 
     def _extra_kwargs(self, request, *args, **kwargs):
         return {
@@ -37,13 +37,13 @@ def extra_kwargs(request, *args, **kwargs):
 class TricksThreeApiClass(object):
 
     def func4(self, user, request):
-        return Msg(u'func4')
+        return Msg('func4')
 
     func4._extra_kwargs = extra_kwargs
 
     @add_request_to_kwargs
     def func5(self, user, request):
-        return Msg(u'func5')
+        return Msg('func5')
 
     def func6(self, user):
         if not user.is_authenticated():
